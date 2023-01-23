@@ -16,20 +16,16 @@ public class DealerPanel extends JPanel {
 
         this.centerPanel = new JPanel(); // CENTER
         this.centerPanel.setOpaque(false);
-
         this.northPanel = new JPanel(); // NORD
         this.northPanel.setOpaque(false);
         this.scoreLabel = new JLabel("Dealer:");
-        this.scoreLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+        this.scoreLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
         this.scoreLabel.setForeground(Color.WHITE);
         this.northPanel.add(scoreLabel);
-
         this.southPanel = new JPanel(); // SOUTH
         this.southPanel.setOpaque(false);
-
         this.eastPanel = new JPanel(); // EAST
         this.eastPanel.setOpaque(false);
-
         this.westPanel = new JPanel(); // WEST
         this.westPanel.setOpaque(false);
 
@@ -40,15 +36,11 @@ public class DealerPanel extends JPanel {
         this.add(westPanel, BorderLayout.WEST);
     }
 
-    public void setCard(JLabel card) {
-        this.centerPanel.add(card);
-    }
+    public void setCard(JLabel card) { this.centerPanel.add(card); }
 
     public void setScore(int score) {
         this.scoreLabel.setText("Dealer: " + score);
     }
 
-    public void removeCard() {
-        this.centerPanel.removeAll();
-    }
+    public void removeCard() { this.centerPanel.removeAll(); }
 }

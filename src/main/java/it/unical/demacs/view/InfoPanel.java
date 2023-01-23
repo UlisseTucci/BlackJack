@@ -15,8 +15,8 @@ public class InfoPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.moneyLabel = new JLabel("   Money: " + this.money + "$");
         this.betLabel = new JLabel("   Bet: " + this.bet + "$");
-        this.moneyLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-        this.betLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+        this.moneyLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+        this.betLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
         this.moneyLabel.setForeground(Color.WHITE);
         this.betLabel.setForeground(Color.WHITE);
         this.add(moneyLabel);

@@ -38,6 +38,8 @@ public class MenuPanelController implements ActionListener {
                     System.out.println("HAI PREMUTO IL BOTTONE 'SETTINGS'!");
                     MyPanel.setSfondo(5);
                     MenuFrame.getInstance().repaint();
+                    GameTableFrame.getInstance().resetGame();
+                    Game.getInstance().start();
                 }
                 case MenuButton.EXIT -> {
                     System.out.println("HAI PREMUTO IL BOTTONE 'EXIT'!");

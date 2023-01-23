@@ -69,6 +69,7 @@ public class CommandPanelController implements ActionListener {
                 }
                 case GameButton.STAND -> {
                     System.out.println("Hai premuto il tasto STAND!");
+                    Game.getInstance().dealerPlaying();
                     Game.getInstance().decideWinners();
                     GameTableFrame.getInstance().resetGame();
                 }

@@ -10,10 +10,11 @@ public class MenuFrame extends JFrame {
 
     private MenuFrame() {
         this.setTitle("The BlackJack");
-        this.setSize(Settings.WIDTH, Settings.HEIGHT);
+        //this.setSize(Settings.WIDTH, Settings.HEIGHT);
+        this.setExtendedState(MenuFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setUndecorated(false);
+        this.setUndecorated(true);
         this.setVisible(false);
 
         this.menuPanel = new MenuPanel();

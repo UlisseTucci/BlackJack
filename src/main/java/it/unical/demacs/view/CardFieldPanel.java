@@ -35,7 +35,7 @@ public class CardFieldPanel extends JPanel {
 
         JLabel dealerCardLabel = new JLabel(readCard(dealerCard.getType() + dealerCard.getPicture()));
         System.out.println("Leggi la seguente carta: " + dealerCard.getType() + dealerCard.getPicture());
-        this.dealerPanel.add(dealerCardLabel);
+        this.dealerPanel.setCard(dealerCardLabel);
         //this.dealerPanel.setCard(dealerCardLabel);
 
         JLabel playerCardLabel1 = new JLabel(readCard(playerCard1.getType() + playerCard1.getPicture()));
@@ -52,11 +52,16 @@ public class CardFieldPanel extends JPanel {
         //this.playerPanel.add(playerCardLabel);
     }
 
+    public void askDealerCard(Card dealerCard) {
+        JLabel dealerCardLabel = new JLabel(readCard(dealerCard.getType() + dealerCard.getPicture()));
+        this.dealerPanel.setCard(dealerCardLabel);
+    }
+
     public ImageIcon readCard(String str) {
         ImageIcon icon = new ImageIcon(PATH + str + ".png");
         //System.out.println(PATH + str + ".png");
         Image image = icon.getImage();
-        Image logos = image.getScaledInstance(120, 167, Image.SCALE_SMOOTH);
+        Image logos = image.getScaledInstance(170, 237, Image.SCALE_SMOOTH);
         icon = new ImageIcon(logos);
         return icon;
     }
@@ -97,6 +102,7 @@ public class CardFieldPanel extends JPanel {
         this.repaint();
         this.revalidate();
     }
+
 
     /*
     @Override

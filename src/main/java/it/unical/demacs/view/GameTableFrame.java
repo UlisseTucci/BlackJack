@@ -20,10 +20,11 @@ public class GameTableFrame extends JFrame {
     private GameTableFrame() {
 
         this.setTitle("The BlackJack");
-        this.setSize(Settings.WIDTH, Settings.HEIGHT);
+        //this.setSize(Settings.WIDTH, Settings.HEIGHT);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setUndecorated(false);
+        this.setUndecorated(true);
         this.setVisible(false);
 
         MyPanel mainPanel = new MyPanel();
@@ -44,7 +45,7 @@ public class GameTableFrame extends JFrame {
         this.commandPanel.setController(commandPanelController);
         this.infoPanel = new InfoPanel(); // WEST
         infoPanel.setOpaque(false);
-        Dimension e = new Dimension(200, 10);
+        Dimension e = new Dimension(300, 10);
         infoPanel.setPreferredSize(e);
         JPanel westPanel = new JPanel(); // EAST
         westPanel.setOpaque(false);
@@ -111,33 +112,38 @@ public class GameTableFrame extends JFrame {
         this.cardFieldPanel.askCard(playerCard);
     }
 
+    public void askDealerCard(Card dealerCard) {
+        this.cardFieldPanel.askDealerCard(dealerCard);
+    }
+
     public void dealerWin() {
         JOptionPane.showMessageDialog(this, "Dealer Win!");
-        this.cardFieldPanel.clearPanel();
+        resetGame();
         //TODO: Sistemare i soldi vinti...
     }
 
     public void playerWin() {
         JOptionPane.showMessageDialog(this, "Player Win!");
-        this.cardFieldPanel.clearPanel();
         int currentMoney = this.infoPanel.getMoney();
         currentMoney += possibleWin*2;
         this.infoPanel.setMoney(currentMoney);
+        resetGame();
         //TODO: Sistemare i soldi vinti...
     }
 
     public void pareggio() {
         JOptionPane.showMessageDialog(this, "Pareggio!");
-        this.cardFieldPanel.clearPanel();
         int currentMoney = this.infoPanel.getMoney();
         currentMoney += possibleWin;
         this.infoPanel.setMoney(currentMoney);
+        resetGame();
         //TODO: Sistemare i soldi vinti...
     }
 
     public void resetGame() {
         // TODO: Resettare il gioco...
         this.commandPanel.betStatus();
+        this.cardFieldPanel.clearPanel();
         Game.getInstance().dealCard();
 
     }
@@ -145,6 +151,20 @@ public class GameTableFrame extends JFrame {
     public void setPossibleWin(int totalBet) {
         this.possibleWin = totalBet;
     }
+
+    public void playerBusted() {
+        JOptionPane.showMessageDialog(this, "Bust! Dealer Win!");
+        resetGame();
+    }
+
+    public void dealerBusted() {
+        JOptionPane.showMessageDialog(this, "Bust! Player Win!");
+        int currentMoney = this.infoPanel.getMoney();
+        currentMoney += possibleWin*2;
+        this.infoPanel.setMoney(currentMoney);
+        resetGame();
+    }
+
 
 
 

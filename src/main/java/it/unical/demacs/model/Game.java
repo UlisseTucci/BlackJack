@@ -7,10 +7,13 @@ public class Game {
     private static Game instance = null;
     private int dealerPoints;
     private int playerPoints;
-    private CardStack cardStack = new CardStack();
+    private CardStack cardStack;
     private boolean gameInProgress = false;
 
-    private Game() {}
+    private Game() {
+        this.cardStack = new CardStack();
+        this.cardStack.shuffle();
+    }
 
     public static Game getInstance() {
         if (instance == null) {
@@ -21,8 +24,6 @@ public class Game {
 
     public void start() {
         this.gameInProgress = true;
-        this.cardStack = new CardStack();
-        this.cardStack.shuffle();
     }
 
     public void dealCard() {
@@ -75,6 +76,8 @@ public class Game {
 
         if (playerPoints == 21) {
             GameTableFrame.getInstance().playerWin();
+        } else if (playerPoints > 21) {
+            GameTableFrame.getInstance().playerBusted();
         }
     }
 
@@ -92,5 +95,21 @@ public class Game {
 
     public void surrenderedPlayer() {
         GameTableFrame.getInstance().dealerWin();
+    }
+
+    public void dealerPlaying() {
+        if (dealerPoints <= 10) {
+            Card dealerCard = this.cardStack.drawCard();
+            GameTableFrame.getInstance().askDealerCard(dealerCard);
+            this.dealerPoints += valoreEstratto(dealerCard);
+            GameTableFrame.getInstance().setPoints(dealerPoints, playerPoints);
+
+            if (dealerPoints == 21) {
+                GameTableFrame.getInstance().dealerWin();
+            } else if (dealerPoints > 21) {
+                GameTableFrame.getInstance().dealerBusted();
+            }
+        }
+
     }
 }
