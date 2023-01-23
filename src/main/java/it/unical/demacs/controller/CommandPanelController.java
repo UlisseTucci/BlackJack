@@ -1,8 +1,11 @@
 package it.unical.demacs.controller;
 
+import it.unical.demacs.model.CardStack;
+import it.unical.demacs.model.Game;
 import it.unical.demacs.view.GameButton;
 import it.unical.demacs.view.GameTableFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,24 +53,30 @@ public class CommandPanelController implements ActionListener {
                     totalBet = 0;
                 }
                 case GameButton.BET -> {
-                    System.out.println("Hai premuto il tasto DEAL!");
+                    System.out.println("Hai premuto il tasto BET!");
                     int currentMoney = GameTableFrame.getInstance().getMoney();
-                    System.out.println(currentMoney + " - " + totalBet);
                     GameTableFrame.getInstance().setMoney(currentMoney - totalBet);
+                    GameTableFrame.getInstance().setPossibleWin(totalBet);
                     totalBet = 0;
-                    GameTableFrame.getInstance().startGame();
-                    //
-                    GameTableFrame.getInstance().eliminaMetodo();
-                    //TODO: Inserire il movimento della carte...
+                    GameTableFrame.getInstance().gameStatus();
+                    GameTableFrame.getInstance().setBet(0);
+
                 }
                 case GameButton.HIT -> {
                     System.out.println("Hai premuto il tasto HIT!");
+                    Game.getInstance().askCard();
+
                 }
                 case GameButton.STAND -> {
                     System.out.println("Hai premuto il tasto STAND!");
+                    Game.getInstance().decideWinners();
+                    GameTableFrame.getInstance().resetGame();
                 }
                 case GameButton.SURREND -> {
                     System.out.println("Hai premuto il tasto SURREND!");
+                    Game.getInstance().surrenderedPlayer();
+                    GameTableFrame.getInstance().resetGame();
+
                 }
             }
         }

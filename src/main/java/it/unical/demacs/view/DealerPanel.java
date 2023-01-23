@@ -47,4 +47,8 @@ public class DealerPanel extends JPanel {
     public void setScore(int score) {
         this.scoreLabel.setText("Dealer: " + score);
     }
+
+    public void removeCard() {
+        this.centerPanel.removeAll();
+    }
 }

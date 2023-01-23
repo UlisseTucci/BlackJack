@@ -1,5 +1,6 @@
 package it.unical.demacs.controller;
 
+import it.unical.demacs.model.Game;
 import it.unical.demacs.view.GameTableFrame;
 import it.unical.demacs.view.MenuButton;
 import it.unical.demacs.view.MenuFrame;
@@ -24,7 +25,9 @@ public class MenuPanelController implements ActionListener {
                     System.out.println("HAI PREMUTO IL BOTTONE 'PLAY'!");
                     MenuFrame.getInstance().setInvisibile();
                     GameTableFrame.getInstance().setVisibile();
+                    GameTableFrame.getInstance().resetGame();
                     GameTableFrame.getInstance().showStartMessage();
+                    Game.getInstance().start();
                 }
                 case MenuButton.STATISTIC -> {
                     //TODO: HAI SELEZIONATO IL BOTTONE PER VISUALIZZARE LE STATISTICHE.

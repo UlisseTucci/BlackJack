@@ -3,6 +3,9 @@ package it.unical.demacs.view;
 import it.unical.demacs.Settings;
 import it.unical.demacs.controller.CommandPanelController;
 import it.unical.demacs.controller.TopPanelController;
+import it.unical.demacs.model.Card;
+import it.unical.demacs.model.Game;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +15,7 @@ public class GameTableFrame extends JFrame {
     private CardFieldPanel cardFieldPanel;
     private CommandPanel commandPanel;
     private TopPanel topPanel;
-    private JOptionPane startOptionPane = new JOptionPane();
+    private int possibleWin = 0;
 
     private GameTableFrame() {
 
@@ -27,27 +30,22 @@ public class GameTableFrame extends JFrame {
         mainPanel.setLayout(new BorderLayout());
 
         this.cardFieldPanel = new CardFieldPanel(); // CENTRALE
-        //cardFieldPanel.setOpaque(false);
-
         this.topPanel = new TopPanel(); // NORD
         Dimension n = new Dimension(10, 80);
         this.topPanel.setPreferredSize(n);
         this.topPanel.setOpaque(false);
         TopPanelController topPanelController = new TopPanelController();
         this.topPanel.setController(topPanelController);
-
         this.commandPanel = new CommandPanel(); // SOUTH
         Dimension s = new Dimension(10, 50);
         this.commandPanel.setPreferredSize(s);
         this.commandPanel.setOpaque(false);
         CommandPanelController commandPanelController = new CommandPanelController();
         this.commandPanel.setController(commandPanelController);
-
         this.infoPanel = new InfoPanel(); // WEST
         infoPanel.setOpaque(false);
         Dimension e = new Dimension(200, 10);
         infoPanel.setPreferredSize(e);
-
         JPanel westPanel = new JPanel(); // EAST
         westPanel.setOpaque(false);
         Dimension w = new Dimension(10, 10);
@@ -68,10 +66,7 @@ public class GameTableFrame extends JFrame {
         return instance;
     }
 
-    public void setVisibile() {
-
-        this.setVisible(true);
-    }
+    public void setVisibile() { this.setVisible(true); }
 
     public void setInvisibile() {
         this.setVisible(false);
@@ -93,17 +88,100 @@ public class GameTableFrame extends JFrame {
         this.infoPanel.setBet(bet);
     }
 
-    public void eliminaMetodo() {
-        this.cardFieldPanel.inizializzaMano();
-    }
-
     public void showStartMessage() {
         JOptionPane.showMessageDialog(this, "Benvenuto giocatore." +
                 "\nEffettuare una puntata prima di iniziare il gioco.");
         this.commandPanel.betStatus();
     }
 
-    public void startGame() {
+    public void gameStatus() {
         this.commandPanel.playStatus();
+        //this.cardFieldPanel.startGame();
     }
+
+    public void dealCard(Card dealerCard, Card playerCard1, Card playerCard2) {
+        this.cardFieldPanel.dealCard(dealerCard, playerCard1, playerCard2);
+    }
+
+    public void setPoints(int dealerPoints, int playerPoints) {
+        this.cardFieldPanel.setPoints(dealerPoints, playerPoints);
+    }
+
+    public void askCard(Card playerCard) {
+        this.cardFieldPanel.askCard(playerCard);
+    }
+
+    public void dealerWin() {
+        JOptionPane.showMessageDialog(this, "Dealer Win!");
+        this.cardFieldPanel.clearPanel();
+        //TODO: Sistemare i soldi vinti...
+    }
+
+    public void playerWin() {
+        JOptionPane.showMessageDialog(this, "Player Win!");
+        this.cardFieldPanel.clearPanel();
+        int currentMoney = this.infoPanel.getMoney();
+        currentMoney += possibleWin*2;
+        this.infoPanel.setMoney(currentMoney);
+        //TODO: Sistemare i soldi vinti...
+    }
+
+    public void pareggio() {
+        JOptionPane.showMessageDialog(this, "Pareggio!");
+        this.cardFieldPanel.clearPanel();
+        int currentMoney = this.infoPanel.getMoney();
+        currentMoney += possibleWin;
+        this.infoPanel.setMoney(currentMoney);
+        //TODO: Sistemare i soldi vinti...
+    }
+
+    public void resetGame() {
+        // TODO: Resettare il gioco...
+        this.commandPanel.betStatus();
+        Game.getInstance().dealCard();
+
+    }
+
+    public void setPossibleWin(int totalBet) {
+        this.possibleWin = totalBet;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    public void eliminaMetodo() {
+        this.cardFieldPanel.inizializzaMano();
+    }
+
+    public void betButtonSelected() {
+        startGame();
+        eliminaMetodo();
+        //TODO: Inserire il movimento della carte...
+    }
+
+
+
+
+ */
+
 }

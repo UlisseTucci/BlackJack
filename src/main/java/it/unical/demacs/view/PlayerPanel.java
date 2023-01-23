@@ -15,6 +15,7 @@ public class PlayerPanel extends JPanel {
 
         this.centerPanel = new JPanel(); // CENTER
         this.centerPanel.setOpaque(false);
+        //this.centerPanel.setLayout(new GridLayout());
 
         this.northPanel = new JPanel(); // NORD
         this.northPanel.setOpaque(false);
@@ -45,5 +46,9 @@ public class PlayerPanel extends JPanel {
 
     public void setScore(int score) {
         this.scoreLabel.setText("You: " + score);
+    }
+
+    public void removeCard() {
+        this.centerPanel.removeAll();
     }
 }

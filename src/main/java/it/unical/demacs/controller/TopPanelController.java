@@ -22,6 +22,7 @@ public class TopPanelController implements ActionListener {
                     System.out.println("Hai premuto il tasto per tornare alla HOMEPAGE!");
                     MenuFrame.getInstance().setVisibile();
                     GameTableFrame.getInstance().setInvisibile();
+                    // Resettare il gioco...
                 }
             }
         }

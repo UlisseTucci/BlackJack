@@ -66,6 +66,9 @@ public class CommandPanel extends MyPanel {
         this.bet100Btn.setEnabled(true);
         this.clearBetBtn.setEnabled(true);
         this.betBtn.setEnabled(true);
+        this.hitBtn.setEnabled(false);
+        this.standBtn.setEnabled(false);
+        this.surrendBtn.setEnabled(false);
     }
 
     public void playStatus() {
@@ -80,9 +83,13 @@ public class CommandPanel extends MyPanel {
         this.surrendBtn.setEnabled(true);
     }
 
-    public GameButton getBet1Btn() {
-        return this.bet1Btn;
-    }
-
-    //TODO: Implementare setEnable per ogni bottone e cambiare il metodo getBet1Btn
+    public void setBet1BtnEnable(boolean enable) { this.bet1Btn.setEnabled(enable); }
+    public void setBet5BtnEnable(boolean enable) { this.bet5Btn.setEnabled(enable); }
+    public void setBet25BtnEnable(boolean enable) { this.bet25Btn.setEnabled(enable); }
+    public void setBet100BtnEnable(boolean enable) { this.bet100Btn.setEnabled(enable); }
+    public void setClearBetBtnEnable(boolean enable) { this.clearBetBtn.setEnabled(enable); }
+    public void setBetBtnEnable(boolean enable) { this.betBtn.setEnabled(enable); }
+    public void setHitBtnEnable(boolean enable) { this.hitBtn.setEnabled(enable); }
+    public void setStandBtnEnable(boolean enable) { this.standBtn.setEnabled(enable); }
+    public void setSurrendBtnEnable(boolean enable) { this.surrendBtn.setEnabled(enable); }
 }

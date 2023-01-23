@@ -6,7 +6,7 @@ import java.awt.*;
 public class InfoPanel extends JPanel {
     private JLabel moneyLabel;
     private JLabel betLabel;
-    private int money = 0;
+    private int money = 1000;
     private int bet = 0;
 
     public InfoPanel() {
@@ -28,7 +28,7 @@ public class InfoPanel extends JPanel {
     }
     public void setBet(int bet) {
         this.bet = bet;
-        this.betLabel.setText("   Bet: " + bet + "$");
+        this.betLabel.setText("   Bet: " + this.bet + "$");
     }
 
     public int getMoney() {
@@ -37,6 +37,6 @@ public class InfoPanel extends JPanel {
 
     public void setMoney(int money) {
         this.money = money;
-        this.moneyLabel.setText("   Money: " + money + "$");
+        this.moneyLabel.setText("   Money: " + this.money + "$");
     }
 }
