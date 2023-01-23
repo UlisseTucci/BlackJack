@@ -3,6 +3,8 @@ package it.unical.demacs.model;
 import it.unical.demacs.view.GameButton;
 import it.unical.demacs.view.GameTableFrame;
 
+import javax.swing.*;
+
 public class Game {
     private static Game instance = null;
     private int dealerPoints;
@@ -27,6 +29,10 @@ public class Game {
     }
 
     public void dealCard() {
+        if (this.cardStack.getSize() <= 4) { // Controlliamo che il mazzo abbia abbastanza carte.
+            this.cardStack = new CardStack();
+            this.cardStack.shuffle();
+        }
         this.dealerPoints = 0;
         this.playerPoints = 0;
         GameTableFrame.getInstance().setPoints(dealerPoints, playerPoints);
@@ -69,6 +75,11 @@ public class Game {
     }
 
     public void askCard() {
+        if (this.cardStack.getSize() <= 1) { // Controlliamo che il mazzo abbia abbastanza carte.
+            this.cardStack = new CardStack();
+            this.cardStack.shuffle();
+        }
+
         Card playerCard = this.cardStack.drawCard();
         GameTableFrame.getInstance().askCard(playerCard);
         this.playerPoints += valoreEstratto(playerCard);
@@ -77,7 +88,27 @@ public class Game {
         if (playerPoints == 21) {
             GameTableFrame.getInstance().playerWin();
         } else if (playerPoints > 21) {
-            GameTableFrame.getInstance().playerBusted();
+            GameTableFrame.getInstance().playerBusted(playerPoints);
+        }
+    }
+
+    public void dealerPlaying() {
+        if (this.cardStack.getSize() <= 1) { // Controlliamo che il mazzo abbia abbastanza carte.
+            this.cardStack = new CardStack();
+            this.cardStack.shuffle();
+        }
+
+        while (dealerPoints <= 10) {
+            Card dealerCard = this.cardStack.drawCard();
+            GameTableFrame.getInstance().askDealerCard(dealerCard);
+            this.dealerPoints += valoreEstratto(dealerCard);
+            GameTableFrame.getInstance().setPoints(dealerPoints, playerPoints);
+
+            if (dealerPoints == 21) {
+                GameTableFrame.getInstance().dealerWin();
+            } else if (dealerPoints > 21) {
+                GameTableFrame.getInstance().dealerBusted(dealerPoints);
+            }
         }
     }
 
@@ -95,21 +126,5 @@ public class Game {
 
     public void surrenderedPlayer() {
         GameTableFrame.getInstance().dealerWin();
-    }
-
-    public void dealerPlaying() {
-        if (dealerPoints <= 10) {
-            Card dealerCard = this.cardStack.drawCard();
-            GameTableFrame.getInstance().askDealerCard(dealerCard);
-            this.dealerPoints += valoreEstratto(dealerCard);
-            GameTableFrame.getInstance().setPoints(dealerPoints, playerPoints);
-
-            if (dealerPoints == 21) {
-                GameTableFrame.getInstance().dealerWin();
-            } else if (dealerPoints > 21) {
-                GameTableFrame.getInstance().dealerBusted();
-            }
-        }
-
     }
 }

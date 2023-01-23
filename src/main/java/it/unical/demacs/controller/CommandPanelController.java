@@ -54,12 +54,17 @@ public class CommandPanelController implements ActionListener {
                 }
                 case GameButton.BET -> {
                     System.out.println("Hai premuto il tasto BET!");
-                    int currentMoney = GameTableFrame.getInstance().getMoney();
-                    GameTableFrame.getInstance().setMoney(currentMoney - totalBet);
-                    GameTableFrame.getInstance().setPossibleWin(totalBet);
-                    totalBet = 0;
-                    GameTableFrame.getInstance().gameStatus();
-                    GameTableFrame.getInstance().setBet(0);
+                    if (totalBet != 0) {
+                        int currentMoney = GameTableFrame.getInstance().getMoney();
+                        GameTableFrame.getInstance().setMoney(currentMoney - totalBet);
+                        GameTableFrame.getInstance().setPossibleWin(totalBet);
+                        totalBet = 0;
+                        GameTableFrame.getInstance().gameStatus();
+                        GameTableFrame.getInstance().setBet(0);
+                    }
+                    else if (totalBet == 0) {
+                        GameTableFrame.getInstance().showBetMessage();
+                    }
 
                 }
                 case GameButton.HIT -> {

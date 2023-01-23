@@ -1,6 +1,5 @@
 package it.unical.demacs.view;
 
-import it.unical.demacs.Settings;
 import it.unical.demacs.controller.CommandPanelController;
 import it.unical.demacs.controller.TopPanelController;
 import it.unical.demacs.model.Card;
@@ -95,6 +94,11 @@ public class GameTableFrame extends JFrame {
         this.commandPanel.betStatus();
     }
 
+    public void showBetMessage() {
+        JOptionPane.showMessageDialog(this, "Effettuare una puntata valida prima di iniziare il gioco.");
+        this.commandPanel.betStatus();
+    }
+
     public void gameStatus() {
         this.commandPanel.playStatus();
         //this.cardFieldPanel.startGame();
@@ -152,18 +156,21 @@ public class GameTableFrame extends JFrame {
         this.possibleWin = totalBet;
     }
 
-    public void playerBusted() {
-        JOptionPane.showMessageDialog(this, "Bust! Dealer Win!");
+    public void playerBusted(int playerPoints) {
+        //JOptionPane.showMessageDialog(this, "Bust! Dealer Win!");
+        JOptionPane.showMessageDialog(this, "Bust! \nPlayer points: " + playerPoints + "\nDealer Win!");
         resetGame();
     }
 
-    public void dealerBusted() {
-        JOptionPane.showMessageDialog(this, "Bust! Player Win!");
+    public void dealerBusted(int dealerPoints) {
+        //JOptionPane.showMessageDialog(this, "Bust! Player Win!");
+        JOptionPane.showMessageDialog(this, "Bust! \nDealer points: " + dealerPoints + "\nPlayer Win!");
         int currentMoney = this.infoPanel.getMoney();
         currentMoney += possibleWin*2;
         this.infoPanel.setMoney(currentMoney);
         resetGame();
     }
+
 
 
 

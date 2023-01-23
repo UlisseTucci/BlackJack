@@ -17,14 +17,14 @@ public class MenuPanel extends MyPanel {
         JPanel centerPanel = new JPanel();
         JPanel northPanel = new JPanel();
         northPanel.setOpaque(false);
-        Dimension d = new Dimension(10, 200);
+        Dimension d = new Dimension(10, 300);
         northPanel.setPreferredSize(d);
         JPanel southPanel = new JPanel();
         southPanel.setOpaque(false);
         southPanel.setPreferredSize(d);
         JPanel eastPanel = new JPanel();
         eastPanel.setOpaque(false);
-        Dimension d2 = new Dimension(400, 10);
+        Dimension d2 = new Dimension(550, 10);
         eastPanel.setPreferredSize(d2);
         JPanel westPanel = new JPanel();
         westPanel.setOpaque(false);
