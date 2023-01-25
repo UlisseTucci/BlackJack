@@ -55,7 +55,6 @@ public class SettingsPanel extends MyPanel {
         this.yellowBtn = new SettingsButton(yellow, SettingsButton.YELLOW);
         this.purpleBtn = new SettingsButton(purple, SettingsButton.PURPLE);
         this.red1Btn = new SettingsButton(red1, SettingsButton.RED1);
-        //this.mainBtn.setBackground(null);
 
         centerPanel.add(this.mainBtn);
         centerPanel.add(this.redBtn);

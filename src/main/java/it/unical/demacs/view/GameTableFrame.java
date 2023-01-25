@@ -108,8 +108,8 @@ public class GameTableFrame extends JFrame {
         this.cardFieldPanel.dealCard(dealerCard, playerCard1, playerCard2);
     }
 
-    public void setPoints(int dealerPoints, int playerPoints) {
-        this.cardFieldPanel.setPoints(dealerPoints, playerPoints);
+    public void setPoints(int index, int dealerPoints, int playerPoints, int dealerPointsAlternativi, int playerPointsAlternativi) {
+        this.cardFieldPanel.setPoints(index, dealerPoints, playerPoints, dealerPointsAlternativi, playerPointsAlternativi);
     }
 
     public void askCard(Card playerCard) {
@@ -131,6 +131,8 @@ public class GameTableFrame extends JFrame {
         int currentMoney = this.infoPanel.getMoney();
         currentMoney += possibleWin*2;
         this.infoPanel.setMoney(currentMoney);
+        StatisticFrame.getInstance().setVittorieTotali();
+        StatisticFrame.getInstance().setDenaroGuadagnato(possibleWin);
         resetGame();
         //TODO: Sistemare i soldi vinti...
     }
@@ -159,6 +161,8 @@ public class GameTableFrame extends JFrame {
     public void playerBusted(int playerPoints) {
         //JOptionPane.showMessageDialog(this, "Bust! Dealer Win!");
         JOptionPane.showMessageDialog(this, "Bust! \nPlayer points: " + playerPoints + "\nDealer Win!");
+        StatisticFrame.getInstance().setSconfitteTotali();
+        StatisticFrame.getInstance().setDenaroPerso(possibleWin);
         resetGame();
     }
 
@@ -168,6 +172,8 @@ public class GameTableFrame extends JFrame {
         int currentMoney = this.infoPanel.getMoney();
         currentMoney += possibleWin*2;
         this.infoPanel.setMoney(currentMoney);
+        StatisticFrame.getInstance().setVittorieTotali();
+        StatisticFrame.getInstance().setDenaroGuadagnato(possibleWin);
         resetGame();
     }
 

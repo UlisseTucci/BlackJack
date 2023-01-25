@@ -24,7 +24,7 @@ public class InfoPanel extends JPanel {
     }
 
     public int getBet() {
-        return this.bet;
+        return bet;
     }
     public void setBet(int bet) {
         this.bet = bet;
@@ -32,7 +32,7 @@ public class InfoPanel extends JPanel {
     }
 
     public int getMoney() {
-        return this.money;
+        return money;
     }
 
     public void setMoney(int money) {

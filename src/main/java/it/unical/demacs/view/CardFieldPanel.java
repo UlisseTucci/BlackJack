@@ -1,8 +1,6 @@
 package it.unical.demacs.view;
 
-import it.unical.demacs.controller.CommandPanelController;
 import it.unical.demacs.model.Card;
-import it.unical.demacs.model.CardStack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,9 +64,19 @@ public class CardFieldPanel extends JPanel {
         return icon;
     }
 
-    public void setPoints(int dealerPoints, int playerPoints) {
-        this.dealerPanel.setScore(dealerPoints);
-        this.playerPanel.setScore(playerPoints);
+    public void setPoints(int index, int dealerPoints, int playerPoints, int dealerPointsAlternativi, int playerPointsAlternativi) {
+        if (index == 0) {
+            this.dealerPanel.setScore(dealerPoints);
+            this.playerPanel.setScore(playerPoints);
+        }
+        else if (index == 1) {
+            this.dealerPanel.setAlternativScore(dealerPoints, dealerPointsAlternativi);
+            this.playerPanel.setScore(playerPoints);
+        }
+        else if (index == 2) {
+            this.dealerPanel.setScore(dealerPoints);
+            this.playerPanel.setAlternativScore(playerPoints, playerPointsAlternativi);
+        }
     }
 
     public void clearPanel() {
@@ -77,32 +85,6 @@ public class CardFieldPanel extends JPanel {
         this.repaint();
         this.revalidate();
     }
-
-
-
-
-
-
-    public void inizializzaMano() {
-        ImageIcon icon = new ImageIcon(PATH + "card.png");
-        Image im = icon.getImage();
-        Image logos = im.getScaledInstance(120, 167, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(logos);
-        JLabel card = new JLabel(icon);
-        dealerPanel.add(card);
-
-        ImageIcon icon1 = new ImageIcon(PATH + "card.png");
-        Image im1 = icon1.getImage();
-        Image logos1 = im1.getScaledInstance(120, 167, Image.SCALE_SMOOTH);
-        icon1 = new ImageIcon(logos1);
-        JLabel card1 = new JLabel(icon);
-        playerPanel.setCard(card1);
-        this.playerPanel.setScore(10);
-
-        this.repaint();
-        this.revalidate();
-    }
-
 
     /*
     @Override

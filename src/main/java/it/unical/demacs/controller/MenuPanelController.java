@@ -20,24 +20,23 @@ public class MenuPanelController implements ActionListener {
 
             switch (menuButton.getType()) {
                 case MenuButton.PLAY -> {
-                    //TODO: HAI SELEZIONATO IL BOTTONE PER GIOCARE.
-                    System.out.println("HAI PREMUTO IL BOTTONE 'PLAY'!");
                     MenuFrame.getInstance().setInvisibile();
                     SettingsFrame.getInstance().setInvisibile();
+                    StatisticFrame.getInstance().setInvisibile();
                     GameTableFrame.getInstance().setVisibile();
                     GameTableFrame.getInstance().resetGame();
                     GameTableFrame.getInstance().showStartMessage();
                     Game.getInstance().start();
                 }
                 case MenuButton.STATISTIC -> {
-                    //TODO: HAI SELEZIONATO IL BOTTONE PER VISUALIZZARE LE STATISTICHE.
-                    System.out.println("HAI PREMUTO IL BOTTONE 'STATISTICS'!");
-                }
-                case MenuButton.SETTINGS -> {
-                    //TODO: HAI SELEZIONATO IL BOTTONE PER VISUALIZZARE LE IMPOSTAZIONI.
-                    System.out.println("HAI PREMUTO IL BOTTONE 'SETTINGS'!");
                     MenuFrame.getInstance().setInvisibile();
                     GameTableFrame.getInstance().setInvisibile();
+                    StatisticFrame.getInstance().setVisibile();
+                }
+                case MenuButton.SETTINGS -> {
+                    MenuFrame.getInstance().setInvisibile();
+                    GameTableFrame.getInstance().setInvisibile();
+                    StatisticFrame.getInstance().setInvisibile();
                     SettingsFrame.getInstance().setVisibile();
                     SettingsFrame.getInstance().showMessage();
 
